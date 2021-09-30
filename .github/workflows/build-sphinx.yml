@@ -38,7 +38,8 @@ jobs:
           cd sphinx
           make clean
           make html
-          rm -rf ../docs/*
+          rm -rf ../docs/
+          mkdir ../docs
           cp -r build/html/* ../docs/
           git add .
           git commit -m "Added by github actions"
