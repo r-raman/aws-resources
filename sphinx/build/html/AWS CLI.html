@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CICD" href="CICD.html" /><link rel="prev" title="Analytics" href="Analytics.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CICD" href="CICD.html" /><link rel="prev" title="Analytics" href="Analytics.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.09.22"/>
         <title>AWS CLI - AWS Resources 0.0.1 documentation</title>
@@ -204,7 +203,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="aws-cli">
+          <div class="section" id="aws-cli">
 <h1>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws configure
 <span class="c1"># In the EC2 instance you can</span>
@@ -214,7 +213,7 @@ cat credentials
 </div>
 <p>If you are the use profiles you need to specify the –profile &lt;PROFILE_NAME&gt; while running the commands
 aws s3 ls –profile &lt;PROFILE_NAME&gt;</p>
-<section id="mfa-with-cli">
+<div class="section" id="mfa-with-cli">
 <h2>MFA with CLI<a class="headerlink" href="#mfa-with-cli" title="Permalink to this headline">¶</a></h2>
 <p>The MFA is set under UAM/User/Security credentials tab
 Once the MFA is setup, we can get the arn of the MFA device</p>
@@ -240,8 +239,8 @@ Then</p>
 <p>You should copy the token into the credentials</p>
 <p>AWS SDK
 While using the SDK, if a region is not specified, then us-east-1 will be used as default</p>
-</section>
-<section id="aws-limits">
+</div>
+<div class="section" id="aws-limits">
 <h2>AWS Limits<a class="headerlink" href="#aws-limits" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt><strong>API Rate limits</strong></dt><dd><ol class="arabic simple">
@@ -264,8 +263,8 @@ While using the SDK, if a region is not specified, then us-east-1 will be used a
 </ol>
 </dd>
 </dl>
-</section>
-<section id="aws-cli-credentials-provider-chain">
+</div>
+<div class="section" id="aws-cli-credentials-provider-chain">
 <h2>AWS CLI Credentials Provider Chain<a class="headerlink" href="#aws-cli-credentials-provider-chain" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#config-settings-and-precedence">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#config-settings-and-precedence</a></p>
 <dl class="simple">
@@ -325,8 +324,8 @@ While using the SDK, if a region is not specified, then us-east-1 will be used a
 <p>Use the IAM policy simulator OR the dry run CLI option</p>
 <p><strong>You can use the policy simulator to compare two IAM roles (get it from EC2 meta-data)</strong></p>
 <p>You can retrieve the role name attached to your EC2 instance using the metadata service but not the policy itself</p>
-</section>
-</section>
+</div>
+</div>
 
         </article>
       </div>
