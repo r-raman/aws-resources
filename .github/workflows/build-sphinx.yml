@@ -39,7 +39,7 @@ jobs:
           make clean
           make html
           rm -rf ../docs/*
-          mv build/html/* ../docs/
+          cp -r build/html/* ../docs/
           git add .
           git commit -m "Added by github actions"
           git push
