@@ -40,7 +40,7 @@ jobs:
           make html
           rm -rf ../docs
           mkdir ../docs
-          cp -r build/html/* ../docs/
+          mv -f build/html/* ../docs/
           git add .
           git commit -m "Added by github actions"
           git push
