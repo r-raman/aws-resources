@@ -10,7 +10,7 @@ We used Sphinx on Python 3.9 to build this documentation. Please follow the belo
 ~~~
 pip install sphinx
 
-pip install stanford-theme 
+pip install furo
 
 cd sphinx
 
