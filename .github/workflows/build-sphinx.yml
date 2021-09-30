@@ -1,0 +1,49 @@
+name: build-sphinx-to-gh-pages
+
+env:
+  GITHUB_ACTOR: r-raman
+  GITHUB_REPOSITORY: r-raman/aws-resources
+  GITHUB_TOKEN: ${{ secrets.SPHINX_TOKEN }}
+
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_sphinx_job:
+    runs-on: ubuntu-latest
+    container: debian:buster-slim
+
+    steps:
+  
+      - name: Get prerequisites and clone repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPHINX_TOKEN }}
+        run: |
+          set -x
+          apt-get update
+          apt-get install -y git python3-sphinx python3-pip
+          pip3 install furo
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git clone "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git clean -f
+          git checkout main
+          git pull
+          git checkout gh-pages
+          git reset --hard origin/main
+          cd sphinx
+          make clean
+          make html
+          rm -rf ../docs/*
+          mv build/html/* ../docs/
+          git add .
+          git commit -m "Added by github actions"
+          git push
+          git checkout main
+          git merge gh-pages
+          git push
+        shell: bash
