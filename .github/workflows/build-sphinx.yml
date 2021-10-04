@@ -42,7 +42,6 @@ jobs:
           mkdir ./docs
           mv -f ./sphinx/build/html/* ./docs/
           rm -rf ./sphinx/build/*
-          touch ./docs/.nojekyll
           git add .
           git status
           git commit -m "Added by github actions"
