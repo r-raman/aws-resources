@@ -24,6 +24,7 @@ Once the MFA is setup, we can get the arn of the MFA device
  
 .. image:: _static/images/aws-cli/fig-1.png
     :align: center
+    :scale: 50%
 
 Once you ger the MFA configured you can create an MFA profile
 
