@@ -244,29 +244,44 @@
 </ul>
 </dd>
 <dt>Differences</dt><dd><ul class="simple">
-<li><p>Security
-* GitHub: Github users
-* CodeCommit: AWS IAM users and roles</p></li>
-<li><p>Hosted
-* Github: hosted by GitHub
-* Github enterprise: self hosted on your servers
-* CodeCommit: managed and hosted on AWS</p></li>
-<li><p>UI
-* Github UI is fully featured
-* CodeCommit UI is minimal</p></li>
+<li><p>Security</p>
+<ul>
+<li><p>GitHub: Github users</p></li>
+<li><p>CodeCommit: AWS IAM users and roles</p></li>
+</ul>
+</li>
+<li><p>Hosted</p>
+<ul>
+<li><p>Github: hosted by GitHub</p></li>
+<li><p>Github enterprise: self hosted on your servers</p></li>
+<li><p>CodeCommit: managed and hosted on AWS</p></li>
+</ul>
+</li>
+<li><p>UI</p>
+<ul>
+<li><p>Github UI is fully featured</p></li>
+<li><p>CodeCommit UI is minimal</p></li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>CodeCommit Notifications</strong></dt><dd><ul class="simple">
 <li><p>You can trigger notifications in CodeCommit using AWS SNS / Lambda or CloudWatch Event Rules</p></li>
-<li><p>Use cases for notifications SNS / lambda notifications
-* Deletion of branches
-* Trigger for pushes that happens in the master branch
-* Notify external Build System
-* Trigger AWS Lambda function to perform codebase analysis (maybe credentials got committed in the code?!)</p></li>
-<li><p>Use cases for CloudWatch Event Rules
-* Trigger for pull request updates (created / updated / deleted / commented)
-* Commit comment events
-* CloudWatch Event Rules goes into a SNS topic</p></li>
+<li><p>Use cases for notifications SNS / lambda notifications</p>
+<ul>
+<li><p>Deletion of branches</p></li>
+<li><p>Trigger for pushes that happens in the master branch</p></li>
+<li><p>Notify external Build System</p></li>
+<li><p>Trigger AWS Lambda function to perform codebase analysis (maybe credentials got committed in the code?!)</p></li>
+</ul>
+</li>
+<li><p>Use cases for CloudWatch Event Rules</p>
+<ul>
+<li><p>Trigger for pull request updates (created / updated / deleted / commented)</p></li>
+<li><p>Commit comment events</p></li>
+<li><p>CloudWatch Event Rules goes into a SNS topic</p></li>
+</ul>
+</li>
 </ul>
 </dd>
 </dl>

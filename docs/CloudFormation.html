@@ -205,7 +205,146 @@
         <article role="main">
           <div class="section" id="cloudformation">
 <h1>CloudFormation<a class="headerlink" href="#cloudformation" title="Permalink to this headline">¶</a></h1>
-<p>This is a test</p>
+<ul class="simple">
+<li><p>It is a declarative way of outlining your AWS infrastructure for any resources (most are supported) – Infrastructure as Code</p></li>
+<li><p>CloudFormation is a regional resource but it can create resources in any region</p></li>
+<li><p>For example, you can say</p>
+<ul>
+<li><p>I want a security group</p></li>
+<li><p>I want two EC2 instances using this security group</p></li>
+<li><p>I want two elastic IPs for these EC2 machines</p></li>
+<li><p>I want an S3 bucket</p></li>
+<li><p>I want a load balancer in front of these EC2 machines</p></li>
+</ul>
+</li>
+<li><p>CloudFormation creates these resources in the right order with the exact configuration that is specified</p></li>
+<li><p>There are three main components of Cloudformation</p>
+<ul>
+<li><p>Template</p></li>
+<li><p>Stacks</p></li>
+<li><p>Change Sets</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Benefits of CloudFormation</strong></p>
+<ul class="simple">
+<li><p>Infrastructure as code</p>
+<ul>
+<li><p>No resources are manually created</p></li>
+<li><p>The code can be version controlled using git (for example)</p></li>
+<li><p>Changes to the infrastructure are reviewed through code</p></li>
+</ul>
+</li>
+<li><p>Cost
+* Each resource within the stack is stagged with an identifier so you can easily see how much a stack costs
+* You can estimate the cost of the resources using the CloudFormation template
+* Savings strategy: In dev, you could automate the deletion of all templates at 5 PM and recreate it at 8AM safely</p></li>
+<li><p>Productivity
+* Ability to destroy and re-create the cloud infrastructure on the fly
+* Automated generation of a diagram for your templates
+* Declarative programming (no need to figure out ordering and orchestration)</p></li>
+<li><p>Separation of concern</p>
+<ul>
+<li><p>Create many stacks for many apps and layers</p></li>
+<li><p>Example</p>
+<ul>
+<li><p>VPC stacks</p></li>
+<li><p>Network stacks</p></li>
+<li><p>Application stacks</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Don’t’ re-invent the wheel
+* Leverage existing templates on the web
+* Leverage the documentation</p></li>
+</ul>
+<p><strong>How does CloudFormation work?</strong></p>
+<ul class="simple">
+<li><p>Templates have to be uploaded to S3 and referenced in CloudFormation</p></li>
+<li><p>To update a template, we can’t edit previous ones. We have to re-upload a new version of the template to AWS</p></li>
+<li><p>Stacks are identified by a name</p></li>
+<li><p>Deleting a stack deletes every artifact that was created by CloudFormation</p></li>
+</ul>
+<p><strong>Deploying CloudFormation Templates</strong></p>
+<ul class="simple">
+<li><p>Manual</p>
+<ul>
+<li><p>Edit templates in the CloudFormation Designer</p></li>
+<li><p>Use the console to input parameters</p></li>
+</ul>
+</li>
+<li><p>Automated</p>
+<ul>
+<li><p>Edit the templates in a YAML file</p></li>
+<li><p>Use the AWS CLI to deploy the templates</p></li>
+<li><p>This is the recommended way when the process needs to be fully automated</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>CloudFormation Building Blocks</strong></p>
+<ul class="simple">
+<li><p>Template components</p>
+<ul>
+<li><p>Resources</p>
+<ul>
+<li><p>AWS Resources declared in the template</p></li>
+</ul>
+</li>
+<li><p>Parameters</p>
+<ul>
+<li><p>The dynamic inputs to the template</p></li>
+</ul>
+</li>
+<li><p>Mappings</p>
+<ul>
+<li><p>The static variables in the template</p></li>
+</ul>
+</li>
+<li><p>Outputs</p>
+<ul>
+<li><p>References to what has been created</p></li>
+</ul>
+</li>
+<li><p>Conditionals</p>
+<ul>
+<li><p>List of conditions like “If statements” to perform resource creation</p></li>
+</ul>
+</li>
+<li><p>Metadata</p></li>
+</ul>
+</li>
+<li><p>Template Helpers</p>
+<ul>
+<li><p>References</p>
+<ul>
+<li><p>Link resources within the template</p></li>
+</ul>
+</li>
+<li><p>Functions</p>
+<ul>
+<li><p>To transform data within the template</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Creating a CloudFormation template</strong></p>
+<ul class="simple">
+<li><p>Choose a template and a stack (LAMP)</p></li>
+<li><p>Give the stack a name</p></li>
+<li><p>Specify the necessary parameters</p>
+<ul>
+<li><p>DB User / DB Name and DB Password</p></li>
+<li><p>Choose DB Instance type (t2.micro / t2.small)</p></li>
+<li><p>Create stack</p></li>
+</ul>
+</li>
+<li><p>Once a stack is created you can check on the events to see what was created or being created</p></li>
+<li><p>In the case of CloudFormation by default, if a resource failed during creation everything else is by default rolled back. This can however be changed</p></li>
+</ul>
+<p><strong>Best Practices</strong></p>
+<img alt="_images/fig-12.png" class="align-center" src="_images/fig-12.png"/>
 </div>
 
         </article>
