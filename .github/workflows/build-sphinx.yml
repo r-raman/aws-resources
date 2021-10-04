@@ -41,6 +41,7 @@ jobs:
           rm -rf ../docs
           mkdir ../docs
           mv -f build/html/* ../docs/
+          cd ..
           git add .
           git status
           git commit -m "Added by github actions"
