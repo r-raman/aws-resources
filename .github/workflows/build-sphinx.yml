@@ -38,10 +38,10 @@ jobs:
           cd sphinx
           make clean
           make html
-          rm -rf ../docs
-          mkdir ../docs
-          mv -f build/html/* ../docs/
           cd ..
+          rm -rf ./docs
+          mkdir ./docs
+          mv -f ./sphinx/build/html/* ./docs/
           git add .
           git status
           git commit -m "Added by github actions"
