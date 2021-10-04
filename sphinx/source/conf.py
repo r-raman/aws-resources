@@ -52,6 +52,12 @@ exclude_patterns = ['.DS_Store', '_build']
 # html_theme = 'alabaster'
 # html_theme = 'groundwork'
 html_theme = 'furo'
+html_theme_options = {
+    "navigation_with_keys": True,
+}
+html_title = "Contents"
+pygments_style = "sphinx"
+pygments_dark_style = "monokai"
 
 # import stanford_theme
 # html_theme = 'stanford_theme'
