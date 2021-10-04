@@ -42,6 +42,7 @@ jobs:
           rm -rf ./docs
           mkdir ./docs
           mv -f ./sphinx/build/html/* ./docs/
+          rm -rf ./sphinX/build/*
           git add .
           git status
           git commit -m "Added by github actions"
