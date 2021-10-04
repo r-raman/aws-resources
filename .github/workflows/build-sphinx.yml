@@ -40,6 +40,7 @@ jobs:
           cd ..
           rm -rf ./docs
           mkdir ./docs
+          touch ./docs/.nojekyll
           mv -f ./sphinx/build/html/* ./docs/
           rm -rf ./sphinx/build/*
           git add .
