@@ -42,11 +42,11 @@ jobs:
           mkdir ../docs
           mv -f build/html/* ../docs/
           git add .
+          git status
           git commit -m "Added by github actions"
           git push
           git checkout main
-          git log
           git merge gh-pages
+          git status
           git push
-          git log
         shell: bash
