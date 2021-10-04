@@ -31,10 +31,9 @@ jobs:
           git clone "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git clean -f
-          git checkout main
           git pull
           git checkout gh-pages
-          git reset --hard origin/main
+          git merge main
           cd sphinx
           make clean
           make html
@@ -50,6 +49,5 @@ jobs:
           git push
           git checkout main
           git merge gh-pages
-          git status
           git push
         shell: bash
