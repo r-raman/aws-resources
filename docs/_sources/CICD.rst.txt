@@ -255,6 +255,8 @@ CodeDeploy
 .. image:: _static/images/cicd/fig-6.png
     :align: center
 
+|
+  
 .. image:: _static/images/cicd/fig-7.png
     :align: center
 
@@ -286,6 +288,8 @@ Create to IAM roles
 
 .. image:: _static/images/cicd/fig-9.png
     :align: center
+
+| 
 
 .. image:: _static/images/cicd/fig-10.png
     :align: center
