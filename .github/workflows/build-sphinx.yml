@@ -42,7 +42,6 @@ jobs:
           rm -rf ./docs
           mkdir ./docs
           mv -f ./sphinx/build/html/* ./docs/
-          touch ./docs/.nojekyll
           rm -rf ./sphinx/build/*
           git add .
           git status
