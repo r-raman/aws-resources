@@ -209,8 +209,7 @@
 <h2>CodeCommit<a class="headerlink" href="#codecommit" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/fig-11.png" class="align-center" src="_images/fig-11.png"/>
 <p></p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>Private Git repositories</p></li>
 <li><p>No size limit for repositories</p></li>
 <li><p>Fully managed and highly available</p></li>
@@ -218,7 +217,6 @@
 <li><p>Security – encryption, access control etc</p></li>
 <li><p>Integrated with Jenkins / CodeBuild / other CI tools</p></li>
 </ul>
-</div></blockquote>
 <dl class="simple">
 <dt><strong>CodeCommit Security</strong></dt><dd><ul class="simple">
 <li><p>Interactions are done using Git (standard)</p></li>
@@ -275,8 +273,7 @@
 </div>
 <div class="section" id="codepipeline">
 <h2>CodePipeline<a class="headerlink" href="#codepipeline" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>A visual tool to perform continuous Delivery</p></li>
 <li><p>Source: Github / Amazon S3 / CodeCommit</p></li>
 <li><p>Build: CodeBuild / Jenkins etc.</p></li>
@@ -287,7 +284,6 @@
 * Stages: Build / Test / Deploy / etc.
 * Manual approval can be done at any stage</p></li>
 </ul>
-</div></blockquote>
 <dl class="simple">
 <dt><strong>Pipeline Artifacts</strong></dt><dd><ul class="simple">
 <li><p>Each pipeline stage can create “artifacts”</p></li>
@@ -312,8 +308,7 @@
 </div>
 <div class="section" id="codebuild">
 <h2>CodeBuild<a class="headerlink" href="#codebuild" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>It is a fully managed build service</p></li>
 <li><p>Alternative to other build tools such as Jenkins</p></li>
 <li><p>Continuous scaling (no servers to manage or provision – no build queue)</p></li>
@@ -331,21 +326,20 @@
 <li><p>Ability to reproduce CodeBuild locally to troubleshoot in case of errors</p></li>
 <li><p>Builds can be defined within CodePipeline or CodeBuild itself</p></li>
 </ul>
-</div></blockquote>
-<dl>
+<dl class="simple">
 <dt><strong>Code Build Support Environments</strong></dt><dd><ul class="simple">
 <li><p>Java / Ruby / Python / Go / Node.js / Android / .NET Core /  PHP</p></li>
 <li><p>Docker: extend any environment you like</p></li>
 </ul>
 </dd>
-<dt><strong>How CodeBuild works?</strong></dt><dd><blockquote>
-<div><ul class="simple">
+</dl>
+<p><strong>How CodeBuild works?</strong></p>
+<img alt="_images/fig-3.png" class="align-center" src="_images/fig-3.png"/>
+<ul class="simple">
 <li><p>Buildspec.yml should be at the root of the codebase</p></li>
 <li><p>You don’t really need docker for CodeBuild</p></li>
 </ul>
-</div></blockquote>
-<img alt="_images/fig-3.png" class="align-center" src="_images/fig-3.png"/>
-</dd>
+<dl class="simple">
 <dt><strong>BuildSpec.yml</strong></dt><dd><ul class="simple">
 <li><p>Buildspec.yml must be at the root of the repository</p></li>
 <li><p>We can define environments variables like</p>
@@ -390,8 +384,7 @@
 </div>
 <div class="section" id="codedeploy">
 <h2>CodeDeploy<a class="headerlink" href="#codedeploy" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>This is a managed service</p></li>
 <li><p>Appspec.yml file should be at the root of the github repository</p></li>
 <li><p>Used in cases where we want to deploy our application automatically to many EC2 instances, where these instances are not managed by Elastic Beanstalk</p></li>
@@ -408,7 +401,6 @@
 #. EC2 instances will run the deployment instructions
 #. CodeDeploy agent will report success or failure of deployment on the EC2 instance</p></li>
 </ul>
-</div></blockquote>
 <img alt="_images/fig-5.png" class="align-center" src="_images/fig-5.png"/>
 <dl class="simple">
 <dt><strong>CodeDeploy – Other</strong></dt><dd><ul class="simple">
@@ -571,8 +563,7 @@
 </div>
 <div class="section" id="codestar-overview">
 <h2>CodeStar Overview<a class="headerlink" href="#codestar-overview" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>CodeStar is an integrated solution thar re-groups: Github, CodeCommit, CodeBuild, CodeDeploy, CloudFormation, CodePipeline, CloudWatch</p></li>
 <li><p>Helps create “CICD ready” projects for EC2, Lambda, Beanstalk</p></li>
 <li><p>Supports many lagit lognguages
@@ -583,7 +574,6 @@
 <li><p>It’s a free service, pay only for the underlying usage of other services</p></li>
 <li><p>Limited customization</p></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 

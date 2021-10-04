@@ -8,12 +8,12 @@ CodeCommit
 
 \
  
-    * Private Git repositories
-    * No size limit for repositories
-    * Fully managed and highly available
-    * Code only resides in the AWS account – increases security and compliance
-    * Security – encryption, access control etc
-    * Integrated with Jenkins / CodeBuild / other CI tools
+* Private Git repositories
+* No size limit for repositories
+* Fully managed and highly available
+* Code only resides in the AWS account – increases security and compliance
+* Security – encryption, access control etc
+* Integrated with Jenkins / CodeBuild / other CI tools
 
 **CodeCommit Security**
   * Interactions are done using Git (standard)
@@ -64,15 +64,15 @@ Differences
   
 CodePipeline
 ------------
-  * A visual tool to perform continuous Delivery
-  * Source: Github / Amazon S3 / CodeCommit
-  * Build: CodeBuild / Jenkins etc.
-  * Load Testing: 3rd Party tools
-  * Deploy: CodeDeploy / Beanstalk / CloudFormation / ECS etc.
-  * Pipelines are made of stages
-    * Each stage can have sequential actions and / or parallel actions
-    * Stages: Build / Test / Deploy / etc.
-    * Manual approval can be done at any stage
+* A visual tool to perform continuous Delivery
+* Source: Github / Amazon S3 / CodeCommit
+* Build: CodeBuild / Jenkins etc.
+* Load Testing: 3rd Party tools
+* Deploy: CodeDeploy / Beanstalk / CloudFormation / ECS etc.
+* Pipelines are made of stages
+  * Each stage can have sequential actions and / or parallel actions
+  * Stages: Build / Test / Deploy / etc.
+  * Manual approval can be done at any stage
 
 **Pipeline Artifacts**
   * Each pipeline stage can create “artifacts”
@@ -93,33 +93,37 @@ CodePipeline
 
 CodeBuild
 ---------
-  * It is a fully managed build service
-  * Alternative to other build tools such as Jenkins
-  * Continuous scaling (no servers to manage or provision – no build queue)
-  * Pay for usage: the time it takes to complete the builds
-  * Leverages docker under the hood for reproducible builds
-  * Possibility to extend the capabilities leveraging our own docker images
-  * Secure: Integration with KMS for encryption for build artifacts, IAM for build permissions, and VPC for network security, CloudTrail for API calls logging
-  * Source code can be from Github / CodeCommit / CodePipeline / S3
-  * Build instructions can be defined in the code (buildspec.yml file)
-  * Output logs to Amazon S3 and AWS CloudWatch logs
-  * Metrics to monitor CodeBuild statistics
-  * Can use CloudWatch alarms to detect failed builds and trigger notifications
-  * Can use CloudWatch Events and AWS lambda as a glue
-  * Can trigger SNS notifications
-  * Ability to reproduce CodeBuild locally to troubleshoot in case of errors
-  * Builds can be defined within CodePipeline or CodeBuild itself
+* It is a fully managed build service
+* Alternative to other build tools such as Jenkins
+* Continuous scaling (no servers to manage or provision – no build queue)
+* Pay for usage: the time it takes to complete the builds
+* Leverages docker under the hood for reproducible builds
+* Possibility to extend the capabilities leveraging our own docker images
+* Secure: Integration with KMS for encryption for build artifacts, IAM for build permissions, and VPC for network security, CloudTrail for API calls logging
+* Source code can be from Github / CodeCommit / CodePipeline / S3
+* Build instructions can be defined in the code (buildspec.yml file)
+* Output logs to Amazon S3 and AWS CloudWatch logs
+* Metrics to monitor CodeBuild statistics
+* Can use CloudWatch alarms to detect failed builds and trigger notifications
+* Can use CloudWatch Events and AWS lambda as a glue
+* Can trigger SNS notifications
+* Ability to reproduce CodeBuild locally to troubleshoot in case of errors
+* Builds can be defined within CodePipeline or CodeBuild itself
 
 **Code Build Support Environments**
   * Java / Ruby / Python / Go / Node.js / Android / .NET Core /  PHP 
   * Docker: extend any environment you like
 
 **How CodeBuild works?**
-  * Buildspec.yml should be at the root of the codebase
-  * You don’t really need docker for CodeBuild
- 
- .. image:: _static/images/cicd/fig-3.png
-    :align: center
+
+.. image:: _static/images/cicd/fig-3.png
+  :align: center
+
+* Buildspec.yml should be at the root of the codebase
+* You don’t really need docker for CodeBuild
+
+
+
 
 **BuildSpec.yml**
   * Buildspec.yml must be at the root of the repository
@@ -158,21 +162,21 @@ CodeBuild
 
 CodeDeploy
 ----------
-  * This is a managed service
-  * Appspec.yml file should be at the root of the github repository
-  * Used in cases where we want to deploy our application automatically to many EC2 instances, where these instances are not managed by Elastic Beanstalk
-  * There are several ways to handle deployments using open source tools like
-    * Ansible
-    * Terraform
-    * Chef
-    * Puppet etc.
-  * Steps to make it work
-    #. Each EC2 instance or an on premise machine should run a CodeDeploy Agent
-    #. The agent continuously polls the AWS CodeDeploy for work to do
-    #. CodeDeploy sends appspec.yml file to the EC2 instance
-    #. The application will pull the source code from Github or S3
-    #. EC2 instances will run the deployment instructions
-    #. CodeDeploy agent will report success or failure of deployment on the EC2 instance
+* This is a managed service
+* Appspec.yml file should be at the root of the github repository
+* Used in cases where we want to deploy our application automatically to many EC2 instances, where these instances are not managed by Elastic Beanstalk
+* There are several ways to handle deployments using open source tools like
+  * Ansible
+  * Terraform
+  * Chef
+  * Puppet etc.
+* Steps to make it work
+  #. Each EC2 instance or an on premise machine should run a CodeDeploy Agent
+  #. The agent continuously polls the AWS CodeDeploy for work to do
+  #. CodeDeploy sends appspec.yml file to the EC2 instance
+  #. The application will pull the source code from Github or S3
+  #. EC2 instances will run the deployment instructions
+  #. CodeDeploy agent will report success or failure of deployment on the EC2 instance
 
 .. image:: _static/images/cicd/fig-5.png
     :align: center
@@ -207,6 +211,7 @@ CodeDeploy
     * Role for CodeDeploy to perform what it needs
   * Target Version
     * Target deployment application version
+
 
 **Appspec.yml**
     * File section
@@ -294,12 +299,12 @@ Create to IAM roles
 
 CodeStar Overview
 -----------------
-  * CodeStar is an integrated solution thar re-groups: Github, CodeCommit, CodeBuild, CodeDeploy, CloudFormation, CodePipeline, CloudWatch
-  * Helps create “CICD ready” projects for EC2, Lambda, Beanstalk
-  * Supports many lagit lognguages
-    * C#, Go, HTML 5, Java, Node.js, PHP, Python, Ruby
-  * Issue tracking integration with: Jira / Github Issues
-  * Ability to integrate with Cloud9 to obtain a web IDE (not supported in all regions)
-  * One dashboard to view all the components (CodeCommit / CodeDeploy etc)
-  * It’s a free service, pay only for the underlying usage of other services
-  * Limited customization
+* CodeStar is an integrated solution thar re-groups: Github, CodeCommit, CodeBuild, CodeDeploy, CloudFormation, CodePipeline, CloudWatch
+* Helps create “CICD ready” projects for EC2, Lambda, Beanstalk
+* Supports many lagit lognguages
+  * C#, Go, HTML 5, Java, Node.js, PHP, Python, Ruby
+* Issue tracking integration with: Jira / Github Issues
+* Ability to integrate with Cloud9 to obtain a web IDE (not supported in all regions)
+* One dashboard to view all the components (CodeCommit / CodeDeploy etc)
+* It’s a free service, pay only for the underlying usage of other services
+* Limited customization
