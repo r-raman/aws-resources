@@ -212,7 +212,6 @@ CodeDeploy
   * Target Version
     * Target deployment application version
 
-
 **Appspec.yml**
     * File section
         * How to source and copy from S3 /  Github to file system
