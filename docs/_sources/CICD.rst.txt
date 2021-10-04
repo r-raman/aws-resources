@@ -4,9 +4,10 @@ CICD
 CodeCommit
 ----------
 .. image:: _static/images/cicd/fig-1.png
-    :align: center
+    :align: center    
 
-:
+\
+ 
     * Private Git repositories
     * No size limit for repositories
     * Fully managed and highly available
@@ -82,8 +83,6 @@ CodePipeline
 .. image:: _static/images/cicd/fig-2.png
     :align: center
 
-:
-
 **Troubleshooting**
   * CodePipeline state changes happen in AWS CloudWatch Events, which can in turn create SNS notifications
     * E.g., you can create events for failed pipelines
@@ -122,8 +121,6 @@ CodeBuild
  .. image:: _static/images/cicd/fig-3.png
     :align: center
 
-:
-
 **BuildSpec.yml**
   * Buildspec.yml must be at the root of the repository
   * We can define environments variables like
@@ -159,8 +156,6 @@ CodeBuild
 .. image:: _static/images/cicd/fig-4.png
     :align: center
 
-:
-
 CodeDeploy
 ----------
   * This is a managed service
@@ -182,8 +177,6 @@ CodeDeploy
 .. image:: _static/images/cicd/fig-5.png
     :align: center
 
-:
- 
 **CodeDeploy – Other**
   * EC2 instances are group by deployment group (dev / test / prod)
   * Lots of flexibility to define any kind of deployments
@@ -257,12 +250,8 @@ CodeDeploy
 .. image:: _static/images/cicd/fig-6.png
     :align: center
 
-:
-
 .. image:: _static/images/cicd/fig-7.png
     :align: center
-
-:
 
 **To create a CodeDeploy**
 
@@ -281,8 +270,6 @@ Create to IAM roles
 .. image:: _static/images/cicd/fig-8.png
     :align: center
 
-:
-
 **CodeDeploy to ASG**
   * In place updates
     * Updates current existing EC2 instances
@@ -295,12 +282,8 @@ Create to IAM roles
 .. image:: _static/images/cicd/fig-9.png
     :align: center
 
-:
-
 .. image:: _static/images/cicd/fig-10.png
     :align: center
-
-:
 
 **CodeDeploy – Rollbacks**
   * Different automated rollback options

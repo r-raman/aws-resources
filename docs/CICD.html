@@ -208,8 +208,9 @@
 <div class="section" id="codecommit">
 <h2>CodeCommit<a class="headerlink" href="#codecommit" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/fig-11.png" class="align-center" src="_images/fig-11.png"/>
-<dl class="simple">
-<dt>:</dt><dd><ul class="simple">
+<p></p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Private Git repositories</p></li>
 <li><p>No size limit for repositories</p></li>
 <li><p>Fully managed and highly available</p></li>
@@ -217,7 +218,8 @@
 <li><p>Security – encryption, access control etc</p></li>
 <li><p>Integrated with Jenkins / CodeBuild / other CI tools</p></li>
 </ul>
-</dd>
+</div></blockquote>
+<dl class="simple">
 <dt><strong>CodeCommit Security</strong></dt><dd><ul class="simple">
 <li><p>Interactions are done using Git (standard)</p></li>
 <li><p>Authentication in Git
@@ -296,7 +298,6 @@
 </dd>
 </dl>
 <img alt="_images/fig-21.png" class="align-center" src="_images/fig-21.png"/>
-<p>:</p>
 <dl class="simple">
 <dt><strong>Troubleshooting</strong></dt><dd><ul class="simple">
 <li><p>CodePipeline state changes happen in AWS CloudWatch Events, which can in turn create SNS notifications
@@ -345,9 +346,6 @@
 </div></blockquote>
 <img alt="_images/fig-3.png" class="align-center" src="_images/fig-3.png"/>
 </dd>
-</dl>
-<p>:</p>
-<dl class="simple">
 <dt><strong>BuildSpec.yml</strong></dt><dd><ul class="simple">
 <li><p>Buildspec.yml must be at the root of the repository</p></li>
 <li><p>We can define environments variables like</p>
@@ -389,7 +387,6 @@
 </dd>
 </dl>
 <img alt="_images/fig-4.png" class="align-center" src="_images/fig-4.png"/>
-<p>:</p>
 </div>
 <div class="section" id="codedeploy">
 <h2>CodeDeploy<a class="headerlink" href="#codedeploy" title="Permalink to this headline">¶</a></h2>
@@ -413,7 +410,6 @@
 </ul>
 </div></blockquote>
 <img alt="_images/fig-5.png" class="align-center" src="_images/fig-5.png"/>
-<p>:</p>
 <dl class="simple">
 <dt><strong>CodeDeploy – Other</strong></dt><dd><ul class="simple">
 <li><p>EC2 instances are group by deployment group (dev / test / prod)</p></li>
@@ -524,9 +520,7 @@
 </dd>
 </dl>
 <img alt="_images/fig-6.png" class="align-center" src="_images/fig-6.png"/>
-<p>:</p>
 <img alt="_images/fig-7.png" class="align-center" src="_images/fig-7.png"/>
-<p>:</p>
 <p><strong>To create a CodeDeploy</strong></p>
 <dl class="simple">
 <dt>Create to IAM roles</dt><dd><ol class="arabic simple">
@@ -550,7 +544,6 @@
 </dd>
 </dl>
 <img alt="_images/fig-8.png" class="align-center" src="_images/fig-8.png"/>
-<p>:</p>
 <dl class="simple">
 <dt><strong>CodeDeploy to ASG</strong></dt><dd><ul class="simple">
 <li><p>In place updates
@@ -564,9 +557,7 @@
 </dd>
 </dl>
 <img alt="_images/fig-9.png" class="align-center" src="_images/fig-9.png"/>
-<p>:</p>
 <img alt="_images/fig-10.png" class="align-center" src="_images/fig-10.png"/>
-<p>:</p>
 <dl class="simple">
 <dt><strong>CodeDeploy – Rollbacks</strong></dt><dd><ul class="simple">
 <li><p>Different automated rollback options
