@@ -41,7 +41,7 @@ jobs:
           rm -rf ./docs
           mkdir ./docs
           touch ./docs/.nojekyll
-          mv -f google905c31be3b5c0d31.html ./docs
+          cp -f google905c31be3b5c0d31.html ./docs
           mv -f ./sphinx/build/html/* ./docs/
           rm -rf ./sphinx/build/*
           git add .
