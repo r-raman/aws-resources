@@ -1,0 +1,672 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CloudFormation" href="CloudFormation.html" /><link rel="prev" title="AWS CLI" href="AWS%20CLI.html" />
+
+    <meta name="generator" content="sphinx-4.2.0, furo 2021.09.22"/>
+        <title>CICD - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=150e365fa939648e89c22f6d7d13c72a1657915a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand"></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/aws.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text"></span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Analytics.html">Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AWS%20CLI.html">AWS CLI</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">CICD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CloudFormation.html">CloudFormation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CloudFront.html">CloudFront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CloudWatch.html">CloudWatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamoDB.html">DynamoDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EB.html">Elastic BeanStalk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EBS%2C%20EFS%2C%20Instance%20Store.html">EBS, EFS, Instance Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EC2.html">EC2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ECS.html">ECS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elasticache.html">ElastiCache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ELB.html">ELB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ENI.html">ENI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IAM.html">IAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Monitoring.html">Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RDS.html">RDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Route%2053.html">Route 53</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3.html">S3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Serverless%20%E2%80%93%20Lambda.html">Serverless - Lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SNS.html">SNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPC.html">VPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Whitepapers.html">Whitepapers</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="cicd">
+<h1>CICD<a class="headerlink" href="#cicd" title="Permalink to this headline">¶</a></h1>
+<section id="codecommit">
+<h2>CodeCommit<a class="headerlink" href="#codecommit" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/fig-11.png" class="align-center" src="_images/fig-11.png"/>
+<p></p>
+<ul class="simple">
+<li><p>Private Git repositories</p></li>
+<li><p>No size limit for repositories</p></li>
+<li><p>Fully managed and highly available</p></li>
+<li><p>Code only resides in the AWS account – increases security and compliance</p></li>
+<li><p>Security – encryption, access control etc</p></li>
+<li><p>Integrated with Jenkins / CodeBuild / other CI tools</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>CodeCommit Security</strong></dt><dd><ul class="simple">
+<li><p>Interactions are done using Git (standard)</p></li>
+<li><p>Authentication in Git
+* SSH Keys: AWS users can configure SSH keys in their IAM console
+* HTTPS: Done through the AWS CLI Authentication helper or generating HTTPS credentials
+* MFA</p></li>
+<li><p>Authorization in Git
+* IAM policies manage user / roles rights to repositories</p></li>
+<li><p>Encryption
+* Repositories are automatically encrypted at rest using KMS
+* Encrypted in transit (Can only use HTTPS or SSH)</p></li>
+<li><p>Cross account access:
+* Use IAM role in your AWS account and use AWS STS (with assumeRole API)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>CodeCommit vs GitHub</strong></p>
+<dl class="simple">
+<dt>Similarities</dt><dd><ul class="simple">
+<li><p>Both are git repositories</p></li>
+<li><p>Both support code review (pull requests)</p></li>
+<li><p>GitHub and CodeCommit can be integrated with AWS CodeBuild</p></li>
+<li><p>Both support HTTPS and SSH method of authentication</p></li>
+</ul>
+</dd>
+<dt>Differences</dt><dd><ul class="simple">
+<li><p>Security</p>
+<ul>
+<li><p>GitHub: Github users</p></li>
+<li><p>CodeCommit: AWS IAM users and roles</p></li>
+</ul>
+</li>
+<li><p>Hosted</p>
+<ul>
+<li><p>Github: hosted by GitHub</p></li>
+<li><p>Github enterprise: self hosted on your servers</p></li>
+<li><p>CodeCommit: managed and hosted on AWS</p></li>
+</ul>
+</li>
+<li><p>UI</p>
+<ul>
+<li><p>Github UI is fully featured</p></li>
+<li><p>CodeCommit UI is minimal</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt><strong>CodeCommit Notifications</strong></dt><dd><ul class="simple">
+<li><p>You can trigger notifications in CodeCommit using AWS SNS / Lambda or CloudWatch Event Rules</p></li>
+<li><p>Use cases for notifications SNS / lambda notifications</p>
+<ul>
+<li><p>Deletion of branches</p></li>
+<li><p>Trigger for pushes that happens in the master branch</p></li>
+<li><p>Notify external Build System</p></li>
+<li><p>Trigger AWS Lambda function to perform codebase analysis (maybe credentials got committed in the code?!)</p></li>
+</ul>
+</li>
+<li><p>Use cases for CloudWatch Event Rules</p>
+<ul>
+<li><p>Trigger for pull request updates (created / updated / deleted / commented)</p></li>
+<li><p>Commit comment events</p></li>
+<li><p>CloudWatch Event Rules goes into a SNS topic</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="codepipeline">
+<h2>CodePipeline<a class="headerlink" href="#codepipeline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A visual tool to perform continuous Delivery</p></li>
+<li><p>Source: Github / Amazon S3 / CodeCommit</p></li>
+<li><p>Build: CodeBuild / Jenkins etc.</p></li>
+<li><p>Load Testing: 3rd Party tools</p></li>
+<li><p>Deploy: CodeDeploy / Beanstalk / CloudFormation / ECS etc.</p></li>
+<li><p>Pipelines are made of stages
+* Each stage can have sequential actions and / or parallel actions
+* Stages: Build / Test / Deploy / etc.
+* Manual approval can be done at any stage</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Pipeline Artifacts</strong></dt><dd><ul class="simple">
+<li><p>Each pipeline stage can create “artifacts”</p></li>
+<li><p>For each stage we can add one or more “action groups”</p></li>
+<li><p>Each action group can have series of “actions”</p></li>
+<li><p>Artifacts are stored in S3 and passed on to the next stage</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/fig-21.png" class="align-center" src="_images/fig-21.png"/>
+<dl class="simple">
+<dt><strong>Troubleshooting</strong></dt><dd><ul class="simple">
+<li><p>CodePipeline state changes happen in AWS CloudWatch Events, which can in turn create SNS notifications
+* E.g., you can create events for failed pipelines
+* You can create events for cancelled stages</p></li>
+<li><p>If a CodePipeline stage fails, your pipeline stops and you can get the information in the console</p></li>
+<li><p>AWS CloudTrail can be used to audit AWS API calls</p></li>
+<li><p>If Pipeline can’t perform an action, make sure the “IAM Service Role” attached does have enough permissions (IAM Policy)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="codebuild">
+<h2>CodeBuild<a class="headerlink" href="#codebuild" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>It is a fully managed build service</p></li>
+<li><p>Alternative to other build tools such as Jenkins</p></li>
+<li><p>Continuous scaling (no servers to manage or provision – no build queue)</p></li>
+<li><p>Pay for usage: the time it takes to complete the builds</p></li>
+<li><p>Leverages docker under the hood for reproducible builds</p></li>
+<li><p>Possibility to extend the capabilities leveraging our own docker images</p></li>
+<li><p>Secure: Integration with KMS for encryption for build artifacts, IAM for build permissions, and VPC for network security, CloudTrail for API calls logging</p></li>
+<li><p>Source code can be from Github / CodeCommit / CodePipeline / S3</p></li>
+<li><p>Build instructions can be defined in the code (buildspec.yml file)</p></li>
+<li><p>Output logs to Amazon S3 and AWS CloudWatch logs</p></li>
+<li><p>Metrics to monitor CodeBuild statistics</p></li>
+<li><p>Can use CloudWatch alarms to detect failed builds and trigger notifications</p></li>
+<li><p>Can use CloudWatch Events and AWS lambda as a glue</p></li>
+<li><p>Can trigger SNS notifications</p></li>
+<li><p>Ability to reproduce CodeBuild locally to troubleshoot in case of errors</p></li>
+<li><p>Builds can be defined within CodePipeline or CodeBuild itself</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Code Build Support Environments</strong></dt><dd><ul class="simple">
+<li><p>Java / Ruby / Python / Go / Node.js / Android / .NET Core /  PHP</p></li>
+<li><p>Docker: extend any environment you like</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>How CodeBuild works?</strong></p>
+<img alt="_images/fig-3.png" class="align-center" src="_images/fig-3.png"/>
+<ul class="simple">
+<li><p>Buildspec.yml should be at the root of the codebase</p></li>
+<li><p>You don’t really need docker for CodeBuild</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>BuildSpec.yml</strong></dt><dd><ul class="simple">
+<li><p>Buildspec.yml must be at the root of the repository</p></li>
+<li><p>We can define environments variables like</p>
+<ul>
+<li><p>Plaintext variable</p></li>
+<li><p>Secure secrets: use SSM parameters store (don’t store secrets in the code)</p></li>
+<li><p>Phases</p>
+<ul>
+<li><p>Install: For installing dependencies for the build</p></li>
+<li><p>Pre-build: Final commands to execute before the build</p></li>
+<li><p>Build: The actual build commands</p></li>
+<li><p>Post Build: Finishing touches (creating zip file output for example)</p></li>
+</ul>
+</li>
+<li><p>Artifacts: These are the artifacts we finally upload to S3
+* They are encrypted using KMS</p></li>
+<li><p>Cache: Files to cache (usually dependencies) to S3 for future builds speedup</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt><strong>Local Build</strong></dt><dd><ul class="simple">
+<li><p>Used in cases where there is a need to deep troubleshoot beyond logs</p></li>
+<li><p>You can run CodeBuild locally on your desktop (after installing Docker)</p></li>
+<li><p>For building locally, CodeBuild Agent is required</p></li>
+</ul>
+</dd>
+<dt><strong>CodeBuild in the VPC</strong></dt><dd><ul class="simple">
+<li><p>By default, your CodeBuild containers are launched outside your VPC</p></li>
+<li><p>Therefore, by default it cannot access resources inside a VPC</p></li>
+<li><p>To overcome it, you can specify a VPC configuration
+* VPC ID
+* Subnet IDs
+* Security Group IDs</p></li>
+<li><p>This VPC configuration will enable access to your VPC resources namely RDS, ElastiCache, EC2, ALB etc</p></li>
+<li><p>Use Cases: Integration tests may require access to a DB to query data, internal load balancers</p></li>
+<li><p>You can also launch a CodeBuild in a private subnet with an NAY Gateway enabled</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/fig-4.png" class="align-center" src="_images/fig-4.png"/>
+</section>
+<section id="codedeploy">
+<h2>CodeDeploy<a class="headerlink" href="#codedeploy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This is a managed service</p></li>
+<li><p>Appspec.yml file should be at the root of the github repository</p></li>
+<li><p>Used in cases where we want to deploy our application automatically to many EC2 instances, where these instances are not managed by Elastic Beanstalk</p></li>
+<li><p>There are several ways to handle deployments using open source tools like
+* Ansible
+* Terraform
+* Chef
+* Puppet etc.</p></li>
+<li><p>Steps to make it work
+#. Each EC2 instance or an on premise machine should run a CodeDeploy Agent
+#. The agent continuously polls the AWS CodeDeploy for work to do
+#. CodeDeploy sends appspec.yml file to the EC2 instance
+#. The application will pull the source code from Github or S3
+#. EC2 instances will run the deployment instructions
+#. CodeDeploy agent will report success or failure of deployment on the EC2 instance</p></li>
+</ul>
+<img alt="_images/fig-5.png" class="align-center" src="_images/fig-5.png"/>
+<dl class="simple">
+<dt><strong>CodeDeploy – Other</strong></dt><dd><ul class="simple">
+<li><p>EC2 instances are group by deployment group (dev / test / prod)</p></li>
+<li><p>Lots of flexibility to define any kind of deployments</p></li>
+<li><p>CodeDeploy can be chained into CodePipeline and use artifacts from there to deploy</p></li>
+<li><p>CodeDeploy can re-use existing setup tools, works with any application,</p></li>
+<li><p>CodeDeploy has an autoscaling integration</p></li>
+<li><p>Note: Blue / Green deployment only works with EC2 instances (not on premise)</p></li>
+<li><p>Support for AWS Lambda deployments</p></li>
+<li><p>CodeDeploy does not provision resources – it assumes the EC2 instances are already existing</p></li>
+</ul>
+</dd>
+<dt><strong>CodeDeploy Primary Components</strong></dt><dd><ul class="simple">
+<li><p>Application: unique name</p></li>
+<li><p>Compute Platform: EC2 / On-premise or Lambda</p></li>
+<li><p>Deployment Configuration: Deployment rules for success or failure status</p></li>
+<li><p>EC2 / On-premise
+* You can specify the minimum number of healthy instances for the deployment</p></li>
+<li><p>AWS Lambda
+* Specify how the traffic is routed to your updated Lambda function versions</p></li>
+<li><p>Deployment Group
+* Group of tagged instances (allows to deploy gradually)</p></li>
+<li><p>Deployment Type
+* In place or Blur / Green deployment</p></li>
+<li><p>IAM instance profile
+* Need to give EC2 the permissions to pull from Github / S3</p></li>
+<li><p>Application Revision
+* Application code  + appspec.yml file</p></li>
+<li><p>Service Role:
+* Role for CodeDeploy to perform what it needs</p></li>
+<li><p>Target Version
+* Target deployment application version</p></li>
+</ul>
+</dd>
+<dt><strong>Appspec.yml</strong></dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>File section</dt><dd><ul>
+<li><p>How to source and copy from S3 /  Github to file system</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Hooks</dt><dd><ul>
+<li><p>A set of instructions to deploy the new version (hooks can have timeouts).</p></li>
+<li><dl class="simple">
+<dt>The order of hooks is</dt><dd><ol class="arabic simple">
+<li><p>ApplicationStop</p></li>
+<li><p>DownloadBundle</p></li>
+<li><p>BeforeInstall</p></li>
+<li><p>AfterInstall</p></li>
+<li><p>ApplicationStart</p></li>
+<li><p>ValidateService: really important</p></li>
+<li><p>Note: not all these steps needs to be specified. But they are in the order specified</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Other CodeDeploy hooks run after ValidateService
+* BeforeAllowTraffic
+* AllowTraffic
+* AfterAllowTraffic</p></li>
+<li><p>Deployment Configs</p></li>
+<li><dl class="simple">
+<dt>Config</dt><dd><ul>
+<li><p>One at a time</p></li>
+<li><p>One instance at a time, one instance fails -&gt; deployment stops</p></li>
+<li><p>Half at a time: 50%</p></li>
+<li><dl class="simple">
+<dt>All at once</dt><dd><ul>
+<li><p>This setting is quick but if there are no no healthy hosts, then there will be some downtime</p></li>
+<li><p>Good for dev</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Custom
+* Minimum healthy host = 75%</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In case of failures</dt><dd><ol class="arabic simple">
+<li><p>Instances stay in the failed state</p></li>
+<li><p>New deployments will be first deployed to failed state instances</p></li>
+<li><dl class="simple">
+<dt>To rollback</dt><dd><ul>
+<li><p>Redeploy old deployment or</p></li>
+<li><p>Enable automated rollback for failures</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>Deployment Targets
+* It is a set of EC2 instances with tags or an ASG
+* Mix of ASG / Tags so you can build deployment segments
+* Customization in scripts with DEPLOYMENT_GROUP_NAME environment variables. For instance, this can be used for doing different actions in development and production</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/fig-6.png" class="align-center" src="_images/fig-6.png"/>
+<div class="line-block">
+<div class="line"><br/></div>
+</div>
+<img alt="_images/fig-7.png" class="align-center" src="_images/fig-7.png"/>
+<p><strong>To create a CodeDeploy</strong></p>
+<dl class="simple">
+<dt>Create to IAM roles</dt><dd><ol class="arabic simple">
+<li><p>Assign a service role (Code Deploy Role) – AWSCodeDeployRole</p></li>
+<li><dl class="simple">
+<dt>EC2 service role</dt><dd><ul class="simple">
+<li><p>Needed for the CodeDeploy agent running on the EC2</p></li>
+<li><p>Role to choose – AmazonS3ReadOnlyAccess</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>This EC2InstanceRoleForCodeDeploy (user’s name of a role) should be assigned as an IAM role in the EC2 instance</p></li>
+</ol>
+</dd>
+<dt><strong>CodeDeploy to EC2</strong></dt><dd><ul class="simple">
+<li><p>Define how to deploy the application using appspec.yml file + deployment strategy</p></li>
+<li><p>Will do in-place update to your fleet of EC2 instances</p></li>
+<li><p>Can use hooks to verify the deployment after each deployment phase</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/fig-8.png" class="align-center" src="_images/fig-8.png"/>
+<dl class="simple">
+<dt><strong>CodeDeploy to ASG</strong></dt><dd><ul class="simple">
+<li><p>In place updates
+* Updates current existing EC2 instances
+* Instances newly created by an ASG will also get automated deployments</p></li>
+<li><p>Blue / Green Deployment
+* A new auto-scaling group is created (settings are copied)
+* Choose how long to keep the old instances
+* Must be using an ELB</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/fig-9.png" class="align-center" src="_images/fig-9.png"/>
+<div class="line-block">
+<div class="line"><br/></div>
+</div>
+<img alt="_images/fig-10.png" class="align-center" src="_images/fig-10.png"/>
+<dl class="simple">
+<dt><strong>CodeDeploy – Rollbacks</strong></dt><dd><ul class="simple">
+<li><p>Different automated rollback options
+* Rollback when a deployment fails
+* Rollback when alarm thresholds are met
+* Disable rollbacks – Do not perform rollback for this deployment</p></li>
+<li><p>If a rollback happens, CodeDeploy redeploys the last known good revision as a new deployment</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="codestar-overview">
+<h2>CodeStar Overview<a class="headerlink" href="#codestar-overview" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>CodeStar is an integrated solution thar re-groups: Github, CodeCommit, CodeBuild, CodeDeploy, CloudFormation, CodePipeline, CloudWatch</p></li>
+<li><p>Helps create “CICD ready” projects for EC2, Lambda, Beanstalk</p></li>
+<li><p>Supports many lagit lognguages
+* C#, Go, HTML 5, Java, Node.js, PHP, Python, Ruby</p></li>
+<li><p>Issue tracking integration with: Jira / Github Issues</p></li>
+<li><p>Ability to integrate with Cloud9 to obtain a web IDE (not supported in all regions)</p></li>
+<li><p>One dashboard to view all the components (CodeCommit / CodeDeploy etc)</p></li>
+<li><p>It’s a free service, pay only for the underlying usage of other services</p></li>
+<li><p>Limited customization</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="CloudFormation.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">CloudFormation</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="AWS%20CLI.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">AWS CLI</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">CICD</a><ul>
+<li><a class="reference internal" href="#codecommit">CodeCommit</a></li>
+<li><a class="reference internal" href="#codepipeline">CodePipeline</a></li>
+<li><a class="reference internal" href="#codebuild">CodeBuild</a></li>
+<li><a class="reference internal" href="#codedeploy">CodeDeploy</a></li>
+<li><a class="reference internal" href="#codestar-overview">CodeStar Overview</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/main.js"></script>
+    </body>
+</html>
