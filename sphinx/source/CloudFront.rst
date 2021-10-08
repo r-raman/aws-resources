@@ -57,9 +57,11 @@ A Distribution requires
 * Origin ID – for example S3 bucket ID
 * Restrict Bucket Access – Yes
 * Origin Access Identity (OAI)
+  
  * Grant Read Permission to the identity
 
 * Viewer Protocol Policy
+  
  * Redirect HTTP to HTTPS
  
 **CloudFront Caching**
