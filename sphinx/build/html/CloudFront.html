@@ -209,7 +209,230 @@
         <article role="main">
           <section id="cloudfront">
 <h1>CloudFront<a class="headerlink" href="#cloudfront" title="Permalink to this headline">¶</a></h1>
-<p>This is a test</p>
+<ul class="simple">
+<li><p>It is a Content Delivery Network</p></li>
+<li><p>216 edge locations</p></li>
+<li><p>Provides DDoS protection, integrates with Shield, AWS Web Application firewall</p></li>
+<li><p>Can expose HTTPS and can talk to internal backends via HTTPS</p></li>
+<li><p>Improves latency and reduces load to the S3 buckets</p></li>
+</ul>
+<p>CloudFront Origins
+* S3 Bucket</p>
+<ul class="simple">
+<li><p>For distributing files and caching them at the edge</p></li>
+<li><p>Enhanced security with CloudFront – Origin Access Identity (OAI)</p></li>
+<li><p>OAI is an IAM role</p></li>
+<li><p>CloudFront can be used as Ingress (to upload files to S3)</p></li>
+<li><p>Custom Origin (HTTP)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Application Load Balancer</p></li>
+<li><p>EC2 Instance</p></li>
+<li><p>S3 Website</p></li>
+<li><p>Any HTTP backend</p></li>
+</ul>
+</div></blockquote>
+<p>CloudFront at a High level</p>
+<img alt="_images/fig-14.png" class="align-center" src="_images/fig-14.png"/>
+<div class="line-block">
+<div class="line"><br/></div>
+</div>
+<img alt="_images/fig-22.png" class="align-center" src="_images/fig-22.png"/>
+<div class="line-block">
+<div class="line"><br/></div>
+</div>
+<img alt="_images/fig-31.png" class="align-center" src="_images/fig-31.png"/>
+<p><strong>CloudFront vs S3 Cross Region Replication</strong>
+CloudFront:</p>
+<ul class="simple">
+<li><p>Global Edge Network</p></li>
+<li><p>Files are cached for a TTL (maybe a day)</p></li>
+<li><p>Great for static content that must be available everywhere</p></li>
+</ul>
+<p>S3 CRR</p>
+<ul class="simple">
+<li><p>Must be setup for each region you want replication to happen</p></li>
+<li><p>Files are updated in near real-time</p></li>
+<li><p>Read Only</p></li>
+<li><p>Great for dynamic content that needs to be available at low latency in few regions</p></li>
+</ul>
+<p>In CloudFront you create a Distribution</p>
+<p>A Distribution requires
+* Origin Domain Name – for example S3 bucket ID
+* Origin ID – for example S3 bucket ID
+* Restrict Bucket Access – Yes
+* Origin Access Identity (OAI)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Grant Read Permission to the identity</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Viewer Protocol Policy</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Redirect HTTP to HTTPS</p></li>
+</ul>
+</div></blockquote>
+<p><strong>CloudFront Caching</strong>
+* Cache can be based on</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Headers</p></li>
+<li><p>Session cookies</p></li>
+<li><p>Query string parameters</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>The cache lives at each CloudFront Edge Location</p></li>
+<li><p>You can control the TTL of the cache – Control header, Expires header</p></li>
+<li><p>You can invalidate part of the cache using the CreateInvalidation API</p></li>
+</ul>
+<p><strong>Strategy for Static and Dynamic requests</strong></p>
+<p>CloudFront Invalidating cache
+* Go to a CF distribution and click on invalidations</p>
+<p>CloudFront Security
+Restrict who can access based on Geolocation
+* Whitelist – Countries approved
+* Blacklist – Countries banned
+Restrict who can access based on HTTPS
+* Viewer Protocol Policy</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Redirect HTTP to HTTPS</p></li>
+<li><p>Or use HTTPS only</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Origin Protocol Policy (HTTP or S3)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>HTTP only</p></li>
+<li><p>Or Match viewer</p></li>
+</ul>
+</div></blockquote>
+<p>NOTE: S3 bucket websites does not support HTTPS</p>
+<p>LOOK at Behavior for Viewer protocol policy</p>
+<p>Geo Restrictions can be setup under CloudFront/Restritions</p>
+<p><strong>CloudFront Signed URL / Cookies</strong>
+Use Case: To distribute paid shared content to premium users over the world
+* Use CloudFront Signed URL / Cookie. We can attach a policy that includes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>URL expiration</p></li>
+<li><p>IP ranges to access the data from</p></li>
+<li><p>Trusted signers – which AWS accounts can create a signed URLs</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>How long should the URL should be valid for?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Shared content – short</p></li>
+<li><p>Private content – long</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Signed URL – gives access to a single file</p></li>
+<li><p>Signed Cookie – gives access to multiple files</p></li>
+</ul>
+<p><strong>Signed URL process</strong>
+Go to CloudFront / Key Management
+Two types of signers
+* Trusted Key Group (recommended)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Can leverage APIs to create and rotate keys (and IAM for API security)</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>An AWS account that contains a CloudFront Key Pair</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Need to manage keys using the root user and the AWS console</p></li>
+<li><p>Not recommended</p></li>
+<li><p>Cannot automate</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>In the CF distribution create one or more Trusted Key Group</p></li>
+<li><p>Generate a Public and Private Key – CloudFront / Key Management</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The private key is used by EC2 instances to sign URLs</p></li>
+<li><p>The public key used by CF is uploaded to CloudFront to verify URLs</p></li>
+</ul>
+</div></blockquote>
+<p><strong>CloudFront Signed URL vs S3 Signed URL</strong>
+* CloudFront</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Allow access to a path, no matter the origin</p></li>
+<li><p>Account wide key-pair – only the root can manage it</p></li>
+<li><p>Can filter by IP, path, date, expiration</p></li>
+<li><p>Can leverage caching capabilities</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>S3</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Issue a request as the person who pre-signed the URL</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Uses the IAM key of the signing IAM principal</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Limited lifetime</p></li>
+</ul>
+</div></blockquote>
+<p>CloudFront Signed URL are commonly used to distribute paid content through dynamic CloudFront Signed URL generation</p>
+<p><strong>CloudFront Price Classes</strong>
+* Price Class All: all regions – best performance
+* Price Class 200: most regions, but excludes the most expensive regions
+* Price Class 100: Only the least expensive regions</p>
+<p><strong>CloudFront – Multiple Origin</strong>
+* To route to different kind of origins based on the content type
+* Based on path pattern</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>/images/*</p></li>
+<li><p>/api/*</p></li>
+<li><p>/*</p></li>
+</ul>
+</div></blockquote>
+<p><strong>CloudFront – Origin Groups</strong>
+* To increase high availability and do failover
+* Origin group: One primary and one secondary
+* Applicable to both EC2 and S3</p>
+<p><strong>CloudFront – Field Level Encryption</strong>
+* Protect user sensitive information through application stack
+* Adds an additional layer of security along with HTTPS
+* Sensitive information encrypted at the edge close to the user
+* Uses asymmetric encryption
+* Usage:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Specify a set of fields in POST requests that you want to be encrypted – up to 10 fields</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Example, credit card info</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Specify the public key to encrypt them</p></li>
+</ul>
+</div></blockquote>
 </section>
 
         </article>
